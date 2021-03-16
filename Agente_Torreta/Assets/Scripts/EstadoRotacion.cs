@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EstadoEspera : InstruccionesFSM
+public class EstadoRotacion : InstruccionesFSM
 {
     public override void EnterState(TorretaEstatica torreta)
     {
-        //Inicia el estado de espera
+        Debug.Log("Entro a estado de rotaciÃ³n");
     }
 
     public override void UpdateState(TorretaEstatica torreta)
     {
-        //Ejecución del estado espera
+        
     }
 }

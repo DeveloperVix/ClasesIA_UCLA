@@ -7,7 +7,7 @@ using UnityEngine;
 */
 
 //Los estados en que puede estar el agente
-//public enum AgentState { Idle, Rotation, Attack}
+public enum AgentState { Idle, Rotation, Attack}
 public class TorretaEstatica : MonoBehaviour
 {
     //Una variable para saber el estado del agente
