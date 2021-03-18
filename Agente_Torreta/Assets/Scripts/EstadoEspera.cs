@@ -22,6 +22,10 @@ public class EstadoEspera : InstruccionesFSM
 
     public override void UpdateState(TorretaEstatica torreta)
     {
-        //Ejecuci�n del estado espera
+        if(torreta.playerDetected == true)
+        {
+            torreta.StopAllCoroutines();
+            torreta.TransitionToState(torreta.attackState);
+        }
     }
 }

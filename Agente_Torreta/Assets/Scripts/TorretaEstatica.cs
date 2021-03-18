@@ -28,12 +28,20 @@ public class TorretaEstatica : MonoBehaviour
     public Vector3[] angles;        //Un arreglo de vectores que guarda los angulos que debe pas
     public int angleIndex;          //Una variable para recorrer el arreglo uno por uno
 
+    public GameObject playerTarget;
+
+    public GameObject prefabBullet;
+    public Transform canion;
+
     public readonly EstadoEspera idleState = new EstadoEspera();
     public readonly EstadoRotacion rotateState = new EstadoRotacion();
+    public readonly EstadoAtacar attackState = new EstadoAtacar();
 
     // Este metodo se manda llamar cuando se ejecuta el proyecto
     void Start()
     {
+        playerTarget = GameObject.FindGameObjectWithTag("Player");
+
         TransitionToState(idleState); //Su primer estado es el Idle
     }
 

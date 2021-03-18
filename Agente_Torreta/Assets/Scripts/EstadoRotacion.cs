@@ -12,14 +12,20 @@ public class EstadoRotacion : InstruccionesFSM
 
     public override void UpdateState(TorretaEstatica torreta)
     {
-        torreta.transform.rotation = Quaternion.Slerp(torreta.transform.rotation,
-        Quaternion.Euler(torreta.angles[torreta.angleIndex]), Time.deltaTime * torreta.speedRotation);
-
-        if(torreta.transform.eulerAngles.y >= (torreta.angles[torreta.angleIndex].y - 1))
+        if (torreta.playerDetected == true)
         {
-            Debug.Log("Llegue al angulo destino");
-            torreta.angleIndex = (torreta.angleIndex + 1) % torreta.angles.Length;
-            torreta.TransitionToState(torreta.idleState);
+            torreta.TransitionToState(torreta.attackState);
+        }
+        else
+        {
+            torreta.transform.rotation = Quaternion.Slerp(torreta.transform.rotation,
+                Quaternion.Euler(torreta.angles[torreta.angleIndex]), Time.deltaTime * torreta.speedRotation);
+            if (torreta.transform.eulerAngles.y >= (torreta.angles[torreta.angleIndex].y - 1))
+            {
+                Debug.Log("Llegue al angulo destino");
+                torreta.angleIndex = (torreta.angleIndex + 1) % torreta.angles.Length;
+                torreta.TransitionToState(torreta.idleState);
+            }
         }
     }
 }
