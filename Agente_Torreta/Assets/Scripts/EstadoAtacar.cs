@@ -14,14 +14,21 @@ public class EstadoAtacar : InstruccionesFSM
 
     }
 
-    public override void UpdateState(TorretaEstatica torreta)
+    public override void UpdateState(TorretaEstatica torreta) //comentario
     {
         if(torreta.playerDetected == true)
         {
+            //comentariuo
             var lookRotation = Quaternion.LookRotation(torreta.playerTarget.transform.position - torreta.transform.position);
+            //comentario
             torreta.transform.rotation = Quaternion.Slerp(torreta.transform.rotation, lookRotation, torreta.speedRotation * Time.deltaTime);
 
             //Disparar
+            if(nextFire < Time.time)
+            {
+                torreta.FireBullet();
+                nextFire = Time.time + rateFire;
+            }
         }
         else
         {

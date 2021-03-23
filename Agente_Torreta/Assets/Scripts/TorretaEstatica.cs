@@ -29,7 +29,6 @@ public class TorretaEstatica : MonoBehaviour
     public int angleIndex;          //Una variable para recorrer el arreglo uno por uno
 
     public GameObject playerTarget;
-
     public GameObject prefabBullet;
     public Transform canion;
 
@@ -82,6 +81,12 @@ public class TorretaEstatica : MonoBehaviour
     {
         StartCoroutine(thisCoroutine);
     }
+
+    public void FireBullet()
+    {
+        Instantiate(prefabBullet, canion.position, canion.rotation);
+    }
+
     //Metodo para poder visualizar el colisionador invisible que esta en el metodo TargetDetet
     private void OnDrawGizmos()
     {
