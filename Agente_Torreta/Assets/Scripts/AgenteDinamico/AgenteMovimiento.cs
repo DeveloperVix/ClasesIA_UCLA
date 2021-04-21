@@ -23,10 +23,15 @@ public class AgenteMovimiento : MonoBehaviour
     public Vector3 tempPositionPlayer;
     bool once = false;
 
+    [Header("Logica difusa")]
+    public int puntosMotivacion = 100;
+    LogicaDifusaAgente evaluadorLogicaDifusa;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        evaluadorLogicaDifusa = GetComponent<LogicaDifusaAgente>();
 
         currentDestination = waypoints[indexWaypoints];
 
@@ -46,6 +51,9 @@ public class AgenteMovimiento : MonoBehaviour
                 indexWaypoints = (indexWaypoints + 1) % waypoints.Length;
 
                 currentDestination = waypoints[indexWaypoints];
+
+                puntosMotivacion = Random.Range(0, 101);
+                agent.speed = evaluadorLogicaDifusa.EvaluarMotivacion(puntosMotivacion, agent.speed);
 
             }
             agent.SetDestination(currentDestination.position);
